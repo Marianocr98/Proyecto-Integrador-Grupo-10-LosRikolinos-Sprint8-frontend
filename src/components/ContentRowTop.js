@@ -1,6 +1,58 @@
-import React from 'react';
+import React, {Component} from 'react';
+
 import imagenFondo from '../assets/images/parrillada.jpg'
-function ContentRowTop(){
+import Categories from './Categories.js'
+import Products from './Products.js'
+
+class ContentRowTop extends Component{
+	constructor(){
+        super()
+
+        this.state ={
+			productsList : [],
+			productsCount : "",
+			userList :[],
+			userCount : "",
+			categoryList:[]
+
+        }
+
+        }
+        componentDidMount(){
+            fetch('/api/products')
+            .then(respuesta =>{
+            return respuesta.json()
+            })
+            .then(products =>{
+            console.log(products)
+			console.log(products.count)
+			console.log(Object.getOwnPropertyNames(products.countByCategory))
+
+            this.setState({
+							productsList: products.products,
+							productsCount : products.count
+							})
+
+            })
+            .catch(error => console.log(error))
+
+			fetch('/api/user')
+            .then(respuesta =>{
+            return respuesta.json()
+            })
+            .then(users =>{
+            console.log(users)
+			console.log(users.count)
+
+            this.setState({	userList: users,
+							userCount : users.count
+							})
+            })
+            .catch(error => console.log(error))
+            }
+			
+	
+render(){
     return(
         <React.Fragment>
             {/*<!-- Content Row Top -->*/}
@@ -19,7 +71,9 @@ function ContentRowTop(){
 									<div className="row no-gutters align-items-center">
 										<div className="col mr-2">
 											<div className="text-xs font-weight-bold text-primary text-uppercase mb-1">Productos en Base de Datos</div>
-											<div className="h5 mb-0 font-weight-bold number text-gray-800">33</div>
+											<div className="h5 mb-0 font-weight-bold number text-gray-800">
+												{this.state.productsCount}
+												</div>
 										</div>
 									</div>
 								</div>
@@ -33,7 +87,7 @@ function ContentRowTop(){
 									<div className="row no-gutters align-items-center">
 										<div className="col mr-2">
 											<div className="text-xs font-weight-bold text-primary text-uppercase mb-1">Categorias en Base de Datos</div>
-											<div className="h5 mb-0 font-weight-bold number text-gray-800">6</div>
+											<div className="h5 mb-0 font-weight-bold number text-gray-800">{}</div>
 										</div>
 									</div>
 								</div>
@@ -48,7 +102,10 @@ function ContentRowTop(){
 										<div className="col mr-2">
 											<div className="text-xs font-weight-bold text-warning text-uppercase mb-1">Usuarios en Base de Datos
 											</div>
-											<div className="h5 mb-0 font-weight-bold number text-gray-800">9</div>
+											<div className="h5 mb-0 font-weight-bold number text-gray-800">
+											{this.state.userCount}
+
+											</div>
 										</div>
 										
 									</div>
@@ -84,48 +141,8 @@ function ContentRowTop(){
 								</div>
 								<div className="card-body">
 									<div className="row">
-										<div className="col-lg-6 mb-4">
-											<div className="card bg-dark text-white shadow">
-												<div className="card-body">
-													Hamburguesas
-												</div>
-											</div>
-										</div>
-										<div className="col-lg-6 mb-4">
-											<div className="card bg-dark text-white shadow">
-												<div className="card-body">
-													Pizzas
-												</div>
-											</div>
-										</div>
-										<div className="col-lg-6 mb-4">
-											<div className="card bg-dark text-white shadow">
-												<div className="card-body">
-													Pastas
-												</div>
-											</div>
-										</div>
-										<div className="col-lg-6 mb-4">
-											<div className="card bg-dark text-white shadow">
-												<div className="card-body">
-													Empanadas
-												</div>
-											</div>
-										</div>
-										<div className="col-lg-6 mb-4">
-											<div className="card bg-dark text-white shadow">
-												<div className="card-body">
-													Asado
-												</div>
-											</div>
-										</div>
-										<div className="col-lg-6 mb-4">
-											<div className="card bg-dark text-white shadow">
-												<div className="card-body">
-													Bebidas
-												</div>
-											</div>
-										</div>
+
+							
 									</div>
 								</div>
 							</div>
@@ -133,7 +150,45 @@ function ContentRowTop(){
 					</div>
 				</div>
 				{/*<!--End Content Row Top-->*/}
+								    {/*<!-- PRODUCTS LIST -->*/}
+									<h1 className="h3 mb-2 text-gray-800">Todos los productos en la Base de Datos</h1>
+					
+					{/*<!-- DataTales Example -->*/}
+					<div className="card shadow mb-4">
+						<div className="card-body">
+							<div className="table-responsive">
+								<table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+                                            <th>Id</th>
+                                            <th>Titulo</th>
+                                            <th>Descripción</th>
+                                            <th>Categoria</th>
+										</tr>
+									</thead>
+									<tfoot>
+{/* 										<tr>
+                                            <th>Id</th>
+                                            <th>Titulo</th>
+                                            <th>Calificación</th>
+                                            <th>Premios</th>
+                                            <th>Duración</th>
+										</tr> */}
+									</tfoot>
+										
+										{
+                                    this.state.productsList.map((product,index)=>{
+                                        return  <Products  {...product}  key={index} />
+                                    })
+                                }
+
+								</table>
+							</div>
+						</div>
+					</div>  
         </React.Fragment>
     )
+	}
 }
+
 export default ContentRowTop;
