@@ -13,8 +13,8 @@ class ContentRowTop extends Component{
 			productsCount : "",
 			userList :[],
 			userCount : "",
-			categoryList:[]
-
+			categoryList:[],
+			countTotal  :""
         }
 
         }
@@ -26,7 +26,7 @@ class ContentRowTop extends Component{
             .then(products =>{
             console.log(products)
 			console.log(products.count)
-			console.log(Object.getOwnPropertyNames(products.countByCategory))
+			console.log()
 
             this.setState({
 							productsList: products.products,
@@ -46,6 +46,20 @@ class ContentRowTop extends Component{
 
             this.setState({	userList: users,
 							userCount : users.count
+							})
+            })
+            .catch(error => console.log(error))
+
+			fetch('/api/category')
+            .then(respuesta =>{
+            return respuesta.json()
+            })
+            .then(categories =>{
+            console.log(categories.data)
+			console.log(categories.countTotal)
+
+            this.setState({	categoryList: categories.data,
+							countTotal: categories.countTotal
 							})
             })
             .catch(error => console.log(error))
@@ -87,7 +101,9 @@ render(){
 									<div className="row no-gutters align-items-center">
 										<div className="col mr-2">
 											<div className="text-xs font-weight-bold text-primary text-uppercase mb-1">Categorias en Base de Datos</div>
-											<div className="h5 mb-0 font-weight-bold number text-gray-800">{}</div>
+											<div className="h5 mb-0 font-weight-bold number text-gray-800">
+															{this.state.countTotal}
+											</div>
 										</div>
 									</div>
 								</div>
@@ -142,7 +158,11 @@ render(){
 								<div className="card-body">
 									<div className="row">
 
-							
+															{
+																this.state.categoryList.map((categories,index)=>{
+																	return  <Categories  {...categories}  key={index} />
+																})
+															}
 									</div>
 								</div>
 							</div>

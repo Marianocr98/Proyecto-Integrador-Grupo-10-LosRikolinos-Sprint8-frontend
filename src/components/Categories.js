@@ -12,8 +12,8 @@ function Categories(props){
 					<div className="card bg-dark text-white shadow">
 						<div className="card-body">
                         {
-
-}
+                        props.name
+            }
 						</div>
 					</div>
 					
