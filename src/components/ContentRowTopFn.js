@@ -69,7 +69,41 @@ useEffect(()=>{
     .catch(error => console.log(error))
 },[])
 			
-/* 
+
+const [categories,setCategories] = useState([])
+const [categoriesList,setCategoriesList] = useState([])
+
+useEffect(()=>{
+    fetch('/api/category')
+    .then(respuesta =>{
+    return respuesta.json()
+    })
+    .then(categories =>{
+    console.log(categories.data)
+    console.log(categories.countTotal)
+
+    setCategories(categories)
+    })
+    .catch(error => console.log(error))
+},[])
+
+useEffect(()=>{
+    fetch('/api/category')
+    .then(respuesta =>{
+    return respuesta.json()
+    })
+    .then(categoriesList =>{
+    console.log(categoriesList.countByCategory)
+
+    setCategoriesList(categoriesList.countByCategory)
+    })
+    .catch(error => console.log(error))
+},[])
+
+
+console.log(categoriesList)
+
+ /* 
 			fetch('/api/category')
             .then(respuesta =>{
             return respuesta.json()
@@ -121,7 +155,7 @@ useEffect(()=>{
 										<div className="col mr-2">
 											<div className="text-xs font-weight-bold text-primary text-uppercase mb-1">Categorias en Base de Datos</div>
 											<div className="h5 mb-0 font-weight-bold number text-gray-800">
-															{}
+															{categories.countTotal}
 											</div>
 										</div>
 									</div>
@@ -185,7 +219,7 @@ useEffect(()=>{
 									<div className="row">
 
 															{
-																
+																	  <Categories category = {categoriesList}  />
 															}
 									</div>
 								</div>

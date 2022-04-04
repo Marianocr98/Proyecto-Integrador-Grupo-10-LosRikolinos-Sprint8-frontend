@@ -1,19 +1,28 @@
 
 import React from 'react';
 
-function Categories(props){    
+function Categories(props){   
+    console.log(props)
+    let categoryName = Object.keys(props.category)
+    console.log(categoryName)
+
     return(
         <React.Fragment>
-            <div className="col-lg-6 mb-4">
-					<div className="card bg-dark text-white shadow">
-						<div className="card-body">
                         {
-                        props.name
-            }
-						</div>
-					</div>
+                            categoryName.map((category,index)=>{
+                                return 	(
+                                                <div className="col-lg-6 mb-4">
+
+                                    <div className="card bg-dark text-white shadow">
+
+                                <div className="card-body">{category}	</div>
+                                </div>
+                                </div>
+                                )
+                            })
+                        }
 					
-				</div>
+			
                     </React.Fragment>
             )
                 }
