@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import imagenFondo from '../assets/images/parrillada.jpg'
 import Categories from './Categories.js'
 import Products from './Products.js'
- 
+
 
 function ContentRowTop () {
 /* 
@@ -53,6 +53,24 @@ function ContentRowTop () {
             })
             .catch(error => console.log(error))
  */
+
+
+const [ productsList, setProductsList ] = useState([]);
+
+    useEffect(() =>  {
+        fetch('/api/products')
+        .then(response => response.json())
+        .then(data => {
+            // console.log(data.products);
+            setProductsList(data.count)
+        })
+    },[])
+
+    let productsCount = {
+        title: 'Total de productos',
+        cuantity: productsList
+    }
+
 
 const [users,setUsers] = useState([])
 useEffect(()=>{
@@ -139,7 +157,7 @@ console.log(categoriesList)
 										<div className="col mr-2">
 											<div className="text-xs font-weight-bold text-primary text-uppercase mb-1">Productos en Base de Datos</div>
 											<div className="h5 mb-0 font-weight-bold number text-gray-800">
-												{}
+												{productsCount.cuantity}
 												</div>
 										</div>
 									</div>
