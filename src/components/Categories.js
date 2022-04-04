@@ -3,7 +3,7 @@ import React from 'react';
 
 function Categories(props){   
     console.log(props)
-    let categoryName = Object.keys(props.category)
+    let categoryName = Object.entries(props.category)
     console.log(categoryName)
 
     return(
@@ -15,7 +15,7 @@ function Categories(props){
 
                                     <div className="card bg-dark text-white shadow">
 
-                                <div className="card-body">{category}	</div>
+                                <div className="card-body">{category.join(" : ")}	</div>
                                 </div>
                                 </div>
                                 )
