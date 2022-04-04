@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 function Categories(props){   
@@ -8,22 +7,19 @@ function Categories(props){
 
     return(
         <React.Fragment>
-                        {
-                            categoryName.map((category,index)=>{
-                                return 	(
-                                                <div className="col-lg-6 mb-4">
+            {
+                categoryName.map((category,index)=>{
+                    return 	(
+                        <div className="col-lg-6 mb-4" key={index}>
+                        <div className="card bg-dark text-white shadow">
+                        <div className="card-body">{category}</div>
+                        </div>
+                        </div>
+                    )
+                })
+            }
+        </React.Fragment>
+    )
+}
 
-                                    <div className="card bg-dark text-white shadow">
-
-                                <div className="card-body">{category}	</div>
-                                </div>
-                                </div>
-                                )
-                            })
-                        }
-					
-			
-                    </React.Fragment>
-            )
-                }
-                export default Categories;
+export default Categories;

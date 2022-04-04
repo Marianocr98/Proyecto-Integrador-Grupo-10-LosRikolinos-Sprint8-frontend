@@ -61,16 +61,19 @@ const [ productsList, setProductsList ] = useState([]);
         fetch('/api/products')
         .then(response => response.json())
         .then(data => {
-            // console.log(data.products);
-            setProductsList(data.count)
+            console.log(data);
+            setProductsList(data.products)
         })
+
     },[])
 
     let productsCount = {
         title: 'Total de productos',
-        cuantity: productsList
+        cuantity: productsList.length,
+		allProducts: productsList
     }
 
+	console.log(productsCount.allProducts);
 
 const [users,setUsers] = useState([])
 useEffect(()=>{
@@ -79,8 +82,8 @@ useEffect(()=>{
     return respuesta.json()
     })
     .then(users =>{
-    console.log(users)
-    console.log(users.count)
+    // console.log(users)
+    // console.log(users.count)
 
     setUsers(users)
     })
@@ -97,8 +100,8 @@ useEffect(()=>{
     return respuesta.json()
     })
     .then(categories =>{
-    console.log(categories.data)
-    console.log(categories.countTotal)
+    // console.log(categories.data)
+    // console.log(categories.countTotal)
 
     setCategories(categories)
     })
@@ -111,7 +114,7 @@ useEffect(()=>{
     return respuesta.json()
     })
     .then(categoriesList =>{
-    console.log(categoriesList.countByCategory)
+    // console.log(categoriesList.countByCategory)
 
     setCategoriesList(categoriesList.countByCategory)
     })
@@ -237,7 +240,7 @@ console.log(categoriesList)
 									<div className="row">
 
 															{
-																	  <Categories category = {categoriesList}  />
+															<Categories category = {categoriesList}  />
 															}
 									</div>
 								</div>
@@ -246,11 +249,11 @@ console.log(categoriesList)
 					</div>
 				</div>
 				{/*<!--End Content Row Top-->*/}
-								    {/*<!-- PRODUCTS LIST -->*/}
+								{/*<!-- PRODUCTS LIST -->*/}
 									<h1 className="h3 mb-2 text-gray-800">Todos los productos en la Base de Datos</h1>
 					
 					{/*<!-- DataTales Example -->*/}
-					<div className="card shadow mb-4">
+					<div className="card shadow mb-4 tall">
 						<div className="card-body">
 							<div className="table-responsive">
 								<table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -262,20 +265,21 @@ console.log(categoriesList)
                                             <th>Categoria</th>
 										</tr>
 									</thead>
-									<tfoot>
-{/* 										<tr>
-                                            <th>Id</th>
-                                            <th>Titulo</th>
-                                            <th>Calificación</th>
-                                            <th>Premios</th>
-                                            <th>Duración</th>
-										</tr> */}
-									</tfoot>
-										
+									<tbody>
 										{
-                                   
-                                }
-
+											productsCount.allProducts.map( product => {
+												return(
+													<tr key={product.id}>
+														<td>{product.id}</td>
+														<td>{product.title}</td>
+														<td>{product.description}</td>
+                                        				<td>{product.category}</td>
+													</tr>	
+												)
+											})
+										}
+                                        
+									</tbody>
 								</table>
 							</div>
 						</div>
