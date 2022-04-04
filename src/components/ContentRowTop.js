@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import imagenFondo from '../assets/images/parrillada.jpg'
 import Categories from './Categories.js'
 import Products from './Products.js'
+ 
 
 class ContentRowTop extends Component{
 	constructor(){
@@ -14,9 +15,12 @@ class ContentRowTop extends Component{
 			userList :[],
 			userCount : "",
 			categoryList:[],
-			countTotal  :""
+			countTotal  :"",
+			latestProduct : [],
+			apiLast:"",
+			productLast : []
         }
-
+		
         }
         componentDidMount(){
             fetch('/api/products')
@@ -26,13 +30,28 @@ class ContentRowTop extends Component{
             .then(products =>{
             console.log(products)
 			console.log(products.count)
-			console.log()
-
+			let ultimo = products.products.pop()
+			console.log(ultimo.detail)
             this.setState({
 							productsList: products.products,
-							productsCount : products.count
+							productsCount : products.count,
+							latestProduct : ultimo,
+							apiLast: this.state.latestProduct.detail
 							})
+            })
+            .catch(error => console.log(error))
 
+			console.log(this.state.apiLast)
+			fetch(this.state.apiLast)
+            .then(respuesta => 
+				{
+					return respuesta.json()
+				})
+            .then(product =>{
+            console.log(product)
+            this.setState({
+					productLast : product
+					})
             })
             .catch(error => console.log(error))
 
@@ -138,13 +157,21 @@ render(){
 								<div className="card-header py-3">
 									<h5 className="m-0 font-weight-bold text-gray-800">Último producto en Base de Datos</h5>
 								</div>
-								<div className="card-body">
+								
+								  <div className="card-body">
+									  <p>{
+                                    this.state.latestProduct.title
+                                }</p>
 									<div className="text-center">
 										<img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: 50 + 'rem'}} src={imagenFondo} alt=" "/>
 									</div>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, consequatur explicabo officia inventore libero veritatis iure voluptate reiciendis a magnam, vitae, aperiam voluptatum non corporis quae dolorem culpa citationem ratione aperiam voluptatum non corporis ratione aperiam voluptatum quae dolorem culpa ratione aperiam voluptatum?</p>
+									
+									<p>{
+                                    this.state.latestProduct.description
+                                }</p>
 									<a className="btn btn-danger" target="_blank" rel="nofollow" href="/">Ver detalle de producto</a>
 								</div>
+
 							</div>
 						</div>
 						{/*<!-- End content row last product in Data Base -->*/}

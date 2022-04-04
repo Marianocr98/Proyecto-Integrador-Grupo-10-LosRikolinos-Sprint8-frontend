@@ -1,11 +1,7 @@
 
 import React from 'react';
 
-function Categories(props){
-    console.log(props)
-        
-
-    
+function Categories(props){    
     return(
         <React.Fragment>
             <div className="col-lg-6 mb-4">
