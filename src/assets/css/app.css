@@ -72,3 +72,14 @@
   max-width: 70px;
   border-radius: 0;
 }
+
+.tall {
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+tr:hover {
+  background-color: red;
+  color: white;
+}
