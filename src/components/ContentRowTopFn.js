@@ -64,7 +64,6 @@ const [ productsList, setProductsList ] = useState([]);
             console.log(data);
             setProductsList(data.products)
         })
-
     },[])
 
     let productsCount = {
@@ -72,6 +71,7 @@ const [ productsList, setProductsList ] = useState([]);
         cuantity: productsList.length,
 		allProducts: productsList
     }
+
 
 	console.log(productsCount.allProducts);
 
@@ -213,10 +213,8 @@ console.log(categoriesList)
 									<h5 className="m-0 font-weight-bold text-gray-800">Último producto en Base de Datos</h5>
 								</div>
 								
-								  <div className="card-body">
-									  <p>{
-                                   
-                                }</p>
+								<div className="card-body">
+									<p>{}</p>
 									<div className="text-center">
 										<img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: 50 + 'rem'}} src={imagenFondo} alt=" "/>
 									</div>
@@ -262,7 +260,7 @@ console.log(categoriesList)
                                             <th>Id</th>
                                             <th>Titulo</th>
                                             <th>Descripción</th>
-                                            <th>Categoria</th>
+											<th>Precio</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -273,7 +271,7 @@ console.log(categoriesList)
 														<td>{product.id}</td>
 														<td>{product.title}</td>
 														<td>{product.description}</td>
-                                        				<td>{product.category}</td>
+														<td>{product.price}</td>
 													</tr>	
 												)
 											})
