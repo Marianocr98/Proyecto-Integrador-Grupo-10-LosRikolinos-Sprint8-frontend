@@ -2,57 +2,9 @@ import React, {useState, useEffect} from 'react';
 
 import imagenFondo from '../assets/images/parrillada.jpg'
 import Categories from './Categories.js'
-import Products from './Products.js'
 
 
 function ContentRowTop () {
-/* 
-        this.state ={
-			productsList : [],
-			productsCount : "",
-			userList :[],
-			userCount : "",
-			categoryList:[],
-			countTotal  :"",
-			latestProduct : [],
-			apiLast:"",
-			productLast : []
-        } */
-		
-/*         
-        componentDidMount(){
-            fetch('/api/products')
-            .then(respuesta =>{
-            return respuesta.json()
-            })
-            .then(products =>{
-            console.log(products)
-			console.log(products.count)
-			let ultimo = products.products.pop()
-			console.log(ultimo.detail)
-            this.setState({
-							productsList: products.products,
-							productsCount : products.count,
-							latestProduct : ultimo,
-							apiLast: this.state.latestProduct.detail
-							})
-            })
-            .catch(error => console.log(error))
-
-			console.log(this.state.apiLast)
-			fetch(this.state.apiLast)
-            .then(respuesta => 
-				{
-					return respuesta.json()
-				})
-            .then(product =>{
-            console.log(product)
-            this.setState({
-					productLast : product
-					})
-            })
-            .catch(error => console.log(error))
- */
 
 
 const [ productsList, setProductsList ] = useState([]);
@@ -75,7 +27,8 @@ const [ productsList, setProductsList ] = useState([]);
 
 	console.log(productsCount.allProducts);
 
-const [users,setUsers] = useState([])
+const [users,setUsers] = useState([]);
+
 useEffect(()=>{
     fetch('/api/user')
     .then(respuesta =>{
@@ -92,7 +45,6 @@ useEffect(()=>{
 			
 
 const [categories,setCategories] = useState([])
-const [categoriesList,setCategoriesList] = useState([])
 
 useEffect(()=>{
     fetch('/api/category')
@@ -100,23 +52,7 @@ useEffect(()=>{
     return respuesta.json()
     })
     .then(categories =>{
-    // console.log(categories.data)
-    // console.log(categories.countTotal)
-
-    setCategories(categories)
-    })
-    .catch(error => console.log(error))
-},[])
-
-useEffect(()=>{
-    fetch('/api/category')
-    .then(respuesta =>{
-    return respuesta.json()
-    })
-    .then(categoriesList =>{
-    // console.log(categoriesList.countByCategory)
-
-    setCategoriesList(categoriesList.countByCategory)
+    	setCategories(categories)
     })
     .catch(error => console.log(error))
 },[])
@@ -137,24 +73,6 @@ useEffect(()=>{
 
 },[])
 
-console.log(categoriesList)
-
- /* 
-			fetch('/api/category')
-            .then(respuesta =>{
-            return respuesta.json()
-            })
-            .then(categories =>{
-            console.log(categories.data)
-			console.log(categories.countTotal)
-
-            this.setState({	categoryList: categories.data,
-							countTotal: categories.countTotal
-							})
-            })
-            .catch(error => console.log(error))
-            }
-			 */
 	
     return(
         <React.Fragment>
@@ -250,21 +168,9 @@ console.log(categoriesList)
 						{/*<!-- End content row last product in Data Base -->*/}
 
 						{/*<!-- Categorias en DB -->*/}
-						<div className="col-lg-6 mb-4">						
-							<div className="card shadow mb-4">
-								<div className="card-header py-3">
-									<h5 className="m-0 font-weight-bold text-gray-800">Categorias en Base de Datos</h5>
-								</div>
-								<div className="card-body">
-									<div className="row">
 
-															{
-															<Categories category = {categoriesList}  />
-															}
-									</div>
-								</div>
-							</div>
-						</div>
+						{ <Categories /> }
+
 					</div>
 				</div>
 				{/*<!--End Content Row Top-->*/}
