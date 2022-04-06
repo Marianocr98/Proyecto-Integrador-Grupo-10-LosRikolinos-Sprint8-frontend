@@ -1,9 +1,18 @@
+import React, {useState, useEffect} from 'react';
+
+
 
 function UserTables(){
+
     return(
-        <div>
-            <h2>Hola mundo1</h2>
-        </div>
+        <>
+            <a> Por resolver</a>
+        </> 
+          
+						
+        
+                        
+        
     )
 }
 
