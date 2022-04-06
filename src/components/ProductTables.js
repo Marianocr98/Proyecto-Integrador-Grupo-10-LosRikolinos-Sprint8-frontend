@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import '../assets/css/styleP.css'
 
 
 function ProductTables(){
@@ -26,7 +27,8 @@ function ProductTables(){
     
 
     return(
-                <div className="container-fluid card shadow mb-4 tall">
+                <div className="align container-fluid card shadow mb-4 tall">
+                    <h2 className='text-users'>Tabla de Productos</h2>
                     <div className="card-body">
                         <div className="table-responsive">
                             <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">

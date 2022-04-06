@@ -1,5 +1,5 @@
 import React from 'react';
-import image from '../assets/images/Logo-Rikolinos.png';
+
 import ContentWrapper from './ContentWrapper';
 import Categories from './Categories';
 import LastProduct from './LastProduct';
@@ -16,7 +16,7 @@ function SideBar(){
                 {/*<!-- Sidebar - Brand -->*/}
                 <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/" exact>
                     <div className="sidebar-brand-icon">
-                        <img className="w-100" src={image} alt="Rikolinos"/>
+                        <img className="w-100" src={`${process.env.PUBLIC_URL}/images/Logo-Rikolinos.png`} alt="Rikolinos"/>
                     </div>
                 </Link>
 

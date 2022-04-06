@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import '../assets/css/app.css'
 
 
 function LastProduct(){
@@ -26,11 +27,9 @@ useEffect(()=>{
                     {/*<!-- Last Product in DB -->*/}
                  <div className="col-lg-12 mb-4">
                     <div className="card shadow mb-4">
-                        <div className="card-header py-3">
-                            <h5 className="m-0 font-weight-bold text-gray-800">Último producto en Base de Datos</h5>
-                        </div>
+                       <h2 className='text-users'>Ultimo producto</h2>
                         
-                        <div className="card-body">
+                        <div className="center-text card-body">
                             <p>{
                         lastProduct.title
                         }</p>

@@ -19,12 +19,10 @@ function Categories(){
 
     return(
         <>  
-            {categoryName.length === 0 && <p>Cargando...</p>}
+          
                 			
 			    	<div className="container card shadow mb-4">
-			    		<div className="card-header py-3">
-			    			<h5 className="m-0 font-weight-bold text-gray-800">Categorias en Base de Datos</h5>
-			    		</div>
+                            <h2 className='text-users'>Todas las categorias</h2>
 			    		<div className="card-body">
 			    			<div className="comtainer-fluid">
                                 <div className='row'>{

@@ -69,6 +69,9 @@
      border-color: #e74a3b;
   }
 .number{
+  padding:15px;
+  display:flex;
+  justify-content:center;
   max-width: 70px;
   border-radius: 0;
 }
@@ -82,4 +85,42 @@
 tr:hover {
   background-color: red;
   color: white;
+  
+}
+
+tr{
+  font-size: 20px;
+  color: white;
+}
+
+.text-users{
+  text-align:center;
+  color:red;
+  margin-top:10px;
+}
+
+.align{
+  margin-top: 69px;
+}
+
+.center-text {
+  text-align:center;
+}
+
+.title-rikolinos{
+  font-size:50px;
+  text-align:center;
+  padding-bottom:30px;
+  color:red
+}
+
+.text-p{
+  font-size:18px
+}
+
+.products{
+  text-align:center;
+  font-size:2.5rem;
+  font-weight:bold;
+
 }
